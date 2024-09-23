@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { Config } from './config/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { BoardModule } from './services';
 
 @Module({
   imports: [
@@ -15,8 +16,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: false,
       logging: false,
     }),
+    BoardModule,
   ],
-  controllers: [],
   providers: [],
 })
 export class AppModule {}
