@@ -8,4 +8,8 @@ export class BoardRepository {
   constructor(
     @InjectRepository(Board) private boardRepository: Repository<Board>,
   ) {}
+
+  async getAllBoard() {
+    return this.boardRepository.find();
+  }
 }
