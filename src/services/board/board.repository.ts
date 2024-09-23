@@ -12,4 +12,9 @@ export class BoardRepository {
   async getAllBoard() {
     return this.boardRepository.find();
   }
+
+  async createBoard(board: Board) {
+    const created = this.boardRepository.create(board);
+    return this.boardRepository.save(created);
+  }
 }
