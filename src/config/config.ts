@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import { getNumber, getString } from './utils';
+import { getNumber, getString } from '../utils/config.utils';
 
 dotenv.config({ path: '.env' });
 
