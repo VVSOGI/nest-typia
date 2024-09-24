@@ -2,8 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { BoardController } from '../board/board.controller';
 import { BoardService } from '../board/board.service';
 import { Board } from 'src/entities';
-import { CreateBoardDto } from '../board/dto/createBoard.dto';
-import { BadRequestException } from '@nestjs/common';
 
 describe('BoardModule', () => {
   let controller: BoardController;
