@@ -11,16 +11,27 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "src/services/*": ["src/services/*"],
-      "src/utils": ["src/utils/index"]
+      "src/services/*": [
+        "src/services/*"
+      ],
+      "src/utils": [
+        "src/utils/index"
+      ]
     },
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "plugins": [
+      {
+        "transform": "typia/lib/transform"
+      }
+    ]
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 }
