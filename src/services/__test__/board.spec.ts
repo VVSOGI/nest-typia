@@ -2,6 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { BoardController } from '../board/board.controller';
 import { BoardService } from '../board/board.service';
 import { Board } from 'src/entities';
+import { validateCreateBoardRequest } from '../board/decorator/createBoard.decorator';
+import { BadRequestException } from '@nestjs/common';
 
 describe('BoardModule', () => {
   let controller: BoardController;
@@ -67,6 +69,63 @@ describe('BoardModule', () => {
       });
       const result = (await controller.getAllBoard()).data;
       expect(result.length).toBe(0);
+    });
+  });
+
+  describe('createBoard', () => {
+    it('should throw error when sent wrong data', () => {
+      const request = {
+        body: {
+          title: 'test title',
+          description: 'test description',
+          hack: 'hack',
+        },
+      };
+
+      try {
+        validateCreateBoardRequest(request);
+      } catch (err) {
+        expect(err).toBeInstanceOf(BadRequestException);
+        expect(err.response.message).toBe(
+          `Received unexpected data 'hack' [WRONG DATA SENT ERROR]`,
+        );
+      }
+    });
+
+    it('should throw error when sent missing data', () => {
+      const request = {
+        body: {
+          title: null,
+          description: 'test description',
+        },
+      };
+
+      try {
+        validateCreateBoardRequest(request);
+      } catch (err) {
+        expect(err).toBeInstanceOf(BadRequestException);
+        expect(err.response.message).toBe(
+          `Received unexpected data 'title' [MISSING DATA ERROR]`,
+        );
+      }
+    });
+
+    it('should throw error when sent invalid type data', () => {
+      const request = {
+        body: {
+          title: 1000,
+          description: 'test description',
+        },
+      };
+
+      try {
+        validateCreateBoardRequest(request);
+      } catch (err) {
+        expect(err).toBeInstanceOf(BadRequestException);
+        expect(err.response.message).toBe(
+          `Received unexpected data 'title' [INVALID TYPE ERROR]`,
+        );
+      }
     });
   });
 });
