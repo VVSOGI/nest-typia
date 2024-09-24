@@ -10,7 +10,15 @@ export class BoardRepository {
   ) {}
 
   async getAllBoard() {
-    return this.boardRepository.find();
+    const [data, total] = await this.boardRepository.findAndCount({
+      order: {
+        createdAt: 'desc',
+      },
+    });
+    return {
+      data,
+      total,
+    };
   }
 
   async createBoard(board: Board) {
