@@ -6,7 +6,6 @@ import {
   Logger,
   NotAcceptableException,
 } from '@nestjs/common';
-import { error } from 'console';
 
 export interface CreateBoardDto {
   title: string;
