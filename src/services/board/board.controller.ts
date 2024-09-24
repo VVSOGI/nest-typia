@@ -1,13 +1,13 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { BoardService } from './board.service';
-import { CreateBoardDto } from './dto/createBoard.dto';
+import { CreateBoard, CreateBoardDto } from './decorator/createBoard.decorator';
 
 @Controller('board')
 export class BoardController {
   constructor(private boardService: BoardService) {}
 
   @Post()
-  async createBoard(@Body() createBoardDto: CreateBoardDto) {
+  async createBoard(@CreateBoard() createBoardDto: CreateBoardDto) {
     return this.boardService.createBoard(createBoardDto);
   }
 
