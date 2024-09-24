@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { BoardRepository } from './board.repository';
 import { v4 } from 'uuid';
 import { Board } from 'src/entities';
-import { CreateBoardDto } from './decorator/createBoard.decorator';
+import { BoardRepository } from './board.repository';
+import { CreateBoardDto } from './decorator';
 
 @Injectable()
 export class BoardService {
