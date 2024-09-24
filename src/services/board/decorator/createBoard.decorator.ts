@@ -16,14 +16,15 @@ export const CreateBoard = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
     const pattern = /\$input\./g;
     const request = ctx.switchToHttp().getRequest();
-    const res: typia.IValidation<CreateBoardDto> =
+
+    const checkValidate: typia.IValidation<CreateBoardDto> =
       typia.validateEquals<CreateBoardDto>(request.body);
 
-    if (res.success) {
+    if (checkValidate.success) {
       return request.body;
     }
 
-    res.errors.forEach((error) => {
+    checkValidate.errors.forEach((error) => {
       const { expected, value, path } = error;
       const NON_DTO_TYPE = expected === 'undefined';
       const MISSING_DATA = expected && !value;
@@ -57,7 +58,7 @@ export const CreateBoard = createParamDecorator(
       }
     });
 
-    Logger.error(res.errors);
+    Logger.error(checkValidate.errors);
     Logger.error(`Not acceptable error [NOT ACCEPTABLE ERROR] [Create Board]`);
     throw new NotAcceptableException();
   },
