@@ -1,8 +1,13 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { BoardService } from './board.service';
-import { CreateBoard, CreateBoardDto } from './decorator/createBoard.decorator';
 import { ApiTags } from '@nestjs/swagger';
-import { DocsCreateBoard } from './decorator';
+import {
+  CreateBoard,
+  CreateBoardDto,
+  SwaggerCreateBoard,
+  UpdateBoard,
+  UpdateBoardDto,
+} from './decorator';
 
 @ApiTags('BOARD')
 @Controller('board')
@@ -10,7 +15,7 @@ export class BoardController {
   constructor(private boardService: BoardService) {}
 
   @Post()
-  @DocsCreateBoard()
+  @SwaggerCreateBoard()
   async createBoard(@CreateBoard() createBoardDto: CreateBoardDto) {
     return this.boardService.createBoard(createBoardDto);
   }
@@ -18,5 +23,13 @@ export class BoardController {
   @Get()
   async getAllBoard() {
     return this.boardService.getAllBoard();
+  }
+
+  @Patch('/:id')
+  async updateBoard(
+    @Param('id') id: string,
+    @UpdateBoard() updateBoard: UpdateBoardDto,
+  ) {
+    console.log(id, updateBoard);
   }
 }
