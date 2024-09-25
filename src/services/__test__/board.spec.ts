@@ -1,11 +1,11 @@
+import typia from 'typia';
 import { Test, TestingModule } from '@nestjs/testing';
-import { BoardController } from '../board/board.controller';
-import { BoardService } from '../board/board.service';
-import { Board } from 'src/entities';
 import { BadRequestException } from '@nestjs/common';
 import { TypiaExceptionHandler } from 'src/common';
-import typia from 'typia';
-import { CreateBoardValidator } from '../board/validator/createBoard.validator';
+import { Board } from 'src/entities';
+import { BoardController } from '../board/board.controller';
+import { BoardService } from '../board/board.service';
+import { CreateBoardValidator } from '../board/validator';
 
 describe('BoardModule', () => {
   let controller: BoardController;
