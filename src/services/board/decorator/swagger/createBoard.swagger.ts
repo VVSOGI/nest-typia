@@ -16,7 +16,7 @@ class CreateBoard {
   description: string;
 }
 
-export function DocsCreateBoard() {
+export function SwaggerCreateBoard() {
   return applyDecorators(
     ApiBody({
       type: CreateBoard,

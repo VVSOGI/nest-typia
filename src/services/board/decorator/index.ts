@@ -1,2 +1,4 @@
 export * from './createBoard.decorator';
-export * from './docsCreateBoard.decorater';
+export * from './updateBoard.decorator';
+
+export * from './swagger/createBoard.swagger';
