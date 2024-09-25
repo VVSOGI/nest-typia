@@ -2,8 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { BoardController } from '../board/board.controller';
 import { BoardService } from '../board/board.service';
 import { Board } from 'src/entities';
-import { validateCreateBoardRequest } from '../board/decorator/createBoard.decorator';
 import { BadRequestException } from '@nestjs/common';
+import { TypiaExceptionHandler } from 'src/common';
+import typia from 'typia';
+import { CreateBoardValidator } from '../board/validator/createBoard.validator';
 
 describe('BoardModule', () => {
   let controller: BoardController;
@@ -83,7 +85,11 @@ describe('BoardModule', () => {
       };
 
       try {
-        validateCreateBoardRequest(request);
+        const result = new CreateBoardValidator(request).validate();
+        if (typia.is<typia.IValidation.IError>(result)) {
+          const ExceptionHandler = new TypiaExceptionHandler(result);
+          ExceptionHandler.handleValidationError();
+        }
       } catch (err) {
         expect(err).toBeInstanceOf(BadRequestException);
         expect(err.response.message).toBe(
@@ -101,7 +107,11 @@ describe('BoardModule', () => {
       };
 
       try {
-        validateCreateBoardRequest(request);
+        const result = new CreateBoardValidator(request).validate();
+        if (typia.is<typia.IValidation.IError>(result)) {
+          const ExceptionHandler = new TypiaExceptionHandler(result);
+          ExceptionHandler.handleValidationError();
+        }
       } catch (err) {
         expect(err).toBeInstanceOf(BadRequestException);
         expect(err.response.message).toBe(
@@ -119,7 +129,11 @@ describe('BoardModule', () => {
       };
 
       try {
-        validateCreateBoardRequest(request);
+        const result = new CreateBoardValidator(request).validate();
+        if (typia.is<typia.IValidation.IError>(result)) {
+          const ExceptionHandler = new TypiaExceptionHandler(result);
+          ExceptionHandler.handleValidationError();
+        }
       } catch (err) {
         expect(err).toBeInstanceOf(BadRequestException);
         expect(err.response.message).toBe(
@@ -127,5 +141,9 @@ describe('BoardModule', () => {
         );
       }
     });
+  });
+
+  describe('updateBoard', () => {
+    it('should throw error when send invalid wrong data', () => {});
   });
 });
