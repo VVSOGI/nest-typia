@@ -1,7 +1,7 @@
 import typia from 'typia';
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { TypiaExceptionHandler } from 'src/common';
-import { CreateBoardValidator } from '../validator/createBoard.validator';
+import { CreateBoardValidator } from '../validator';
 
 export interface CreateBoardDto {
   title: string;
