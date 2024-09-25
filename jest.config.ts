@@ -13,6 +13,7 @@ const config: Config = {
     '^src/services/(.*)$': '<rootDir>/src/services/$1',
     '^src/entities$': '<rootDir>/src/entities/index',
     '^src/utils$': '<rootDir>/src/utils/index',
+    '^src/common$': '<rootDir>/src/common/index',
   },
 };
 

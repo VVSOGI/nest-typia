@@ -11,12 +11,9 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "src/services/*": [
-        "src/services/*"
-      ],
-      "src/utils": [
-        "src/utils/index"
-      ]
+      "src/services/*": ["src/services/*"],
+      "src/utils": ["src/utils/index"],
+      "src/common": ["src/common/index"]
     },
     "incremental": true,
     "skipLibCheck": true,
@@ -31,7 +28,5 @@
       }
     ]
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }
