@@ -1,5 +1,5 @@
 import typia from 'typia';
-import { CreateBoardDto, CustomRequest } from '../decorator';
+import { CreateBoardDto, CreateRequest } from '../decorator';
 
 /**
  * 이 부분은 원래 Validator로 Generic type을 이용해서 다방면으로 사용할 수 있게 하려고 했으나,
@@ -9,7 +9,7 @@ import { CreateBoardDto, CustomRequest } from '../decorator';
 export class CreateBoardValidator {
   private body: CreateBoardDto;
 
-  constructor(request: CustomRequest) {
+  constructor(request: CreateRequest) {
     this.body = request.body;
   }
 
