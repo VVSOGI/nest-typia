@@ -1,8 +1,8 @@
 import { Repository } from 'typeorm';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Board } from 'src/entities';
-import { UpdateBoardDto } from './types';
+import { UpdateBoardArgs } from './types';
 
 @Injectable()
 export class BoardRepository {
@@ -24,10 +24,17 @@ export class BoardRepository {
 
   async create(board: Board) {
     const created = this.boardRepository.create(board);
-    return this.boardRepository.save(created);
+    return await this.boardRepository.save(created);
   }
 
-  async update(board: UpdateBoardDto) {
-    // const target = this.boardRepository.findOneBy({id: board.})
+  async update(board: UpdateBoardArgs) {
+    const target = await this.boardRepository.findOneBy({ id: board.id });
+
+    if (!target) {
+      throw new NotFoundException(`Couldn't find board that id is ${board.id}`);
+    }
+
+    const updated = { ...target, ...board };
+    return await this.boardRepository.save(updated);
   }
 }
