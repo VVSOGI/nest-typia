@@ -5,7 +5,10 @@ import { TypiaExceptionHandler } from 'src/common';
 import { Board } from 'src/entities';
 import { BoardController } from '../board/board.controller';
 import { BoardService } from '../board/board.service';
-import { CreateBoardValidator, UpdateBoardValidator } from '../board/validator';
+import {
+  CreateBoardValidator,
+  UpdateBoardValidator,
+} from '../board/decorator/validator';
 
 describe('BoardModule', () => {
   let controller: BoardController;
