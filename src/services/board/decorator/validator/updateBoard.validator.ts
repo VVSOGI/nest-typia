@@ -1,6 +1,6 @@
 import typia from 'typia';
-import { UpdateRequest } from '../decorator';
-import { UpdateBoardDto } from '../types';
+import { UpdateRequest } from '..';
+import { UpdateBoardDto } from '../../types';
 
 export class UpdateBoardValidator {
   private body: UpdateBoardDto;

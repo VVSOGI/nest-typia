@@ -1,6 +1,6 @@
 import typia from 'typia';
-import { CreateRequest } from '../decorator';
-import { CreateBoardDto } from '../types';
+import { CreateRequest } from '..';
+import { CreateBoardDto } from '../../types';
 
 /**
  * 이 부분은 원래 Validator로 Generic type을 이용해서 다방면으로 사용할 수 있게 하려고 했으나,

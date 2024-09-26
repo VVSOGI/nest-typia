@@ -1,14 +1,14 @@
 import typia from 'typia';
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { TypiaExceptionHandler } from 'src/common';
-import { CreateBoardValidator } from '../validator';
+import { CreateBoardValidator } from './validator';
 import { CreateBoardDto } from '../types';
 
 export interface CreateRequest {
   body: CreateBoardDto | any;
 }
 
-export const CreateBoard = createParamDecorator(
+export const ValidateCreateDTO = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest<CreateRequest>();
     const result = new CreateBoardValidator(request).validate();
