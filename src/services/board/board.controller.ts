@@ -1,13 +1,8 @@
 import { Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { BoardService } from './board.service';
 import { ApiTags } from '@nestjs/swagger';
-import {
-  CreateBoard,
-  CreateBoardDto,
-  SwaggerCreateBoard,
-  UpdateBoard,
-  UpdateBoardDto,
-} from './decorator';
+import { CreateBoard, SwaggerCreateBoard, UpdateBoard } from './decorator';
+import { CreateBoardDto, UpdateBoardDto } from './types';
 
 @ApiTags('BOARD')
 @Controller('board')
@@ -30,6 +25,6 @@ export class BoardController {
     @Param('id') id: string,
     @UpdateBoard() updateBoard: UpdateBoardDto,
   ) {
-    console.log(id, updateBoard);
+    return this.boardService.updateBoard({ id, ...updateBoard });
   }
 }
