@@ -2,9 +2,10 @@ import { Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { BoardService } from './board.service';
 import {
-  SwaggerCreateBoard,
   ValidateUpdateDTO,
   ValidateCreateDTO,
+  SwaggerCreateBoard,
+  SwaggerUpdateBoard,
 } from './decorator';
 import { CreateBoardDto, UpdateBoardDto } from './types';
 
@@ -25,6 +26,7 @@ export class BoardController {
   }
 
   @Patch('/:id')
+  @SwaggerUpdateBoard()
   async updateBoard(
     @Param('id') id: string,
     @ValidateUpdateDTO() updateBoard: UpdateBoardDto,
