@@ -10,6 +10,11 @@ export class BoardRepository {
     @InjectRepository(Board) private boardRepository: Repository<Board>,
   ) {}
 
+  async create(board: Board) {
+    const created = this.boardRepository.create(board);
+    return await this.boardRepository.save(created);
+  }
+
   async findAll() {
     const [data, total] = await this.boardRepository.findAndCount({
       order: {
@@ -22,18 +27,18 @@ export class BoardRepository {
     };
   }
 
-  async create(board: Board) {
-    const created = this.boardRepository.create(board);
-    return await this.boardRepository.save(created);
+  async findById(id: string) {
+    const target = await this.boardRepository.findOneBy({ id });
+
+    if (!target) {
+      throw new NotFoundException(`Couldn't find board that id is ${id}`);
+    }
+
+    return target;
   }
 
   async update(board: UpdateBoardArgs) {
-    const target = await this.boardRepository.findOneBy({ id: board.id });
-
-    if (!target) {
-      throw new NotFoundException(`Couldn't find board that id is ${board.id}`);
-    }
-
+    const target = await this.findById(board.id);
     const updated = { ...target, ...board };
     return await this.boardRepository.save(updated);
   }
