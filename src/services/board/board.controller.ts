@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { BoardService } from './board.service';
 import { CreateBoard, SwaggerCreateBoard, UpdateBoard } from './decorator';
@@ -26,5 +26,10 @@ export class BoardController {
     @UpdateBoard() updateBoard: UpdateBoardDto,
   ) {
     return this.boardService.updateBoard({ id, ...updateBoard });
+  }
+
+  @Delete('/:id')
+  async deleteBoard(@Param('id') id: string) {
+    return this.boardService.deleteBoard(id);
   }
 }

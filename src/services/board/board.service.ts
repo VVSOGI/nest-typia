@@ -26,4 +26,8 @@ export class BoardService {
   async updateBoard(updateBoard: UpdateBoardArgs) {
     return this.boardRepository.update(updateBoard);
   }
+
+  async deleteBoard(id: string) {
+    return this.boardRepository.delete(id);
+  }
 }

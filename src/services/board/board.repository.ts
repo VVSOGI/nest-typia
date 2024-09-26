@@ -37,4 +37,8 @@ export class BoardRepository {
     const updated = { ...target, ...board };
     return await this.boardRepository.save(updated);
   }
+
+  async delete(id: string) {
+    return await this.boardRepository.delete(id);
+  }
 }
