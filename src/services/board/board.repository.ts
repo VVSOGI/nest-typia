@@ -2,7 +2,6 @@ import { Repository } from 'typeorm';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Board } from 'src/entities';
-import { UpdateBoardArgs } from './types';
 
 @Injectable()
 export class BoardRepository {
