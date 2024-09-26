@@ -5,7 +5,7 @@ import { TypiaExceptionHandler } from 'src/common';
 import { Board } from 'src/entities';
 import { BoardController } from '../board/board.controller';
 import { BoardService } from '../board/board.service';
-import { CreateBoardValidator } from '../board/validator';
+import { CreateBoardValidator, UpdateBoardValidator } from '../board/validator';
 
 describe('BoardModule', () => {
   let controller: BoardController;
@@ -144,6 +144,71 @@ describe('BoardModule', () => {
   });
 
   describe('updateBoard', () => {
-    it('should throw error when send invalid wrong data', () => {});
+    it('should throw error when sent wrong data', () => {
+      const request = {
+        body: {
+          title: 'update test title',
+          description: 'update test description',
+          hack: 'hack',
+        },
+      };
+
+      try {
+        const result = new UpdateBoardValidator(request).validate();
+        if (typia.is<typia.IValidation.IError>(result)) {
+          const ExceptionHandler = new TypiaExceptionHandler(result);
+          ExceptionHandler.handleValidationError();
+        }
+      } catch (err) {
+        expect(err).toBeInstanceOf(BadRequestException);
+        expect(err.response.message).toBe(
+          `Received unexpected data 'hack' [WRONG DATA SENT ERROR]`,
+        );
+      }
+    });
+
+    it('should throw error when sent missing data', () => {
+      const request = {
+        body: {
+          title: null,
+          description: 'update test description',
+        },
+      };
+
+      try {
+        const result = new UpdateBoardValidator(request).validate();
+        if (typia.is<typia.IValidation.IError>(result)) {
+          const ExceptionHandler = new TypiaExceptionHandler(result);
+          ExceptionHandler.handleValidationError();
+        }
+      } catch (err) {
+        expect(err).toBeInstanceOf(BadRequestException);
+        expect(err.response.message).toBe(
+          `Received unexpected data 'title' [MISSING DATA ERROR]`,
+        );
+      }
+    });
+
+    it('should throw error when sent invalid type data', () => {
+      const request = {
+        body: {
+          title: 100,
+          description: 'update test description',
+        },
+      };
+
+      try {
+        const result = new UpdateBoardValidator(request).validate();
+        if (typia.is<typia.IValidation.IError>(result)) {
+          const ExceptionHandler = new TypiaExceptionHandler(result);
+          ExceptionHandler.handleValidationError();
+        }
+      } catch (err) {
+        expect(err).toBeInstanceOf(BadRequestException);
+        expect(err.response.message).toBe(
+          `Received unexpected data 'title' [INVALID TYPE ERROR]`,
+        );
+      }
+    });
   });
 });
