@@ -2,11 +2,7 @@ import typia from 'typia';
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { TypiaExceptionHandler } from 'src/common';
 import { CreateBoardValidator } from '../validator';
-
-export interface CreateBoardDto {
-  title: string;
-  description: string;
-}
+import { CreateBoardDto } from '../types';
 
 export interface CreateRequest {
   body: CreateBoardDto | any;

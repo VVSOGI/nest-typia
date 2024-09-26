@@ -1,16 +1,17 @@
 import typia from 'typia';
-import { CreateBoardDto, UpdateRequest } from '../decorator';
+import { UpdateRequest } from '../decorator';
+import { UpdateBoardDto } from '../types';
 
 export class UpdateBoardValidator {
-  private body: CreateBoardDto;
+  private body: UpdateBoardDto;
 
   constructor(request: UpdateRequest) {
     this.body = request.body;
   }
 
-  validate(): CreateBoardDto | typia.IValidation.IError {
-    const checkValidate: typia.IValidation<CreateBoardDto> =
-      typia.validateEquals<CreateBoardDto>(this.body);
+  validate(): UpdateBoardDto | typia.IValidation.IError {
+    const checkValidate: typia.IValidation<UpdateBoardDto> =
+      typia.validateEquals<UpdateBoardDto>(this.body);
     const { success, errors } = checkValidate;
 
     if (success) {

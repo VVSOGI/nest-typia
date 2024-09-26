@@ -2,11 +2,7 @@ import typia from 'typia';
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
 import { TypiaExceptionHandler } from 'src/common';
 import { UpdateBoardValidator } from '../validator';
-
-export interface UpdateBoardDto {
-  title: string;
-  description: string;
-}
+import { UpdateBoardDto } from '../types';
 
 export interface UpdateRequest {
   body: UpdateBoardDto | any;
