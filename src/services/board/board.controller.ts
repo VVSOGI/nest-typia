@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import { BoardService } from './board.service';
 import { ApiTags } from '@nestjs/swagger';
+import { BoardService } from './board.service';
 import { CreateBoard, SwaggerCreateBoard, UpdateBoard } from './decorator';
 import { CreateBoardDto, UpdateBoardDto } from './types';
 

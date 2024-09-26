@@ -1,6 +1,6 @@
+import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Board } from 'src/entities';
 import { UpdateBoardDto } from './types';
 

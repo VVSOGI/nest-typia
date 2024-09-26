@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
 import { v4 } from 'uuid';
+import { Injectable } from '@nestjs/common';
 import { Board } from 'src/entities';
 import { BoardRepository } from './board.repository';
 import { CreateBoardDto, UpdateBoardArgs } from './types';
