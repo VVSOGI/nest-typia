@@ -24,7 +24,9 @@ export class BoardService {
   }
 
   async updateBoard(updateBoard: UpdateBoardArgs) {
-    return this.boardRepository.update(updateBoard);
+    const target = await this.boardRepository.findById(updateBoard.id);
+    const updated = { ...target, ...updateBoard };
+    return this.boardRepository.update(updated);
   }
 
   async deleteBoard(id: string) {

@@ -37,10 +37,8 @@ export class BoardRepository {
     return target;
   }
 
-  async update(board: UpdateBoardArgs) {
-    const target = await this.findById(board.id);
-    const updated = { ...target, ...board };
-    return await this.boardRepository.save(updated);
+  async update(board: Board) {
+    return await this.boardRepository.save(board);
   }
 
   async delete(id: string) {
