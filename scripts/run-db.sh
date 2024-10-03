@@ -14,7 +14,6 @@ if [ "$INIT_DB" = true ]; then
   docker run \
     --name $DB_CONTAINER_NAME \
     --network sniff-step \
-    -p 5432:5432 \
     -e POSTGRES_PASSWORD=$DB_PASSWORD \
     -e POSTGRES_USER=$DB_USERNAME \
     -e POSTGRES_DB=$DB_DATABASE \
@@ -24,7 +23,6 @@ else
   docker run \
     --name $DB_CONTAINER_NAME \
     --network sniff-step \
-    -p 5432:5432 \
     -e POSTGRES_PASSWORD=$DB_PASSWORD \
     -e POSTGRES_USER=$DB_USERNAME \
     -e POSTGRES_DB=$DB_DATABASE \
